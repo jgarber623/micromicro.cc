@@ -1,0 +1,30 @@
+<h1>Search Results</h1>
+
+<% if document.items.any? || document.relationships.any? %>
+  <p>Found the following microformats2-encoded data for <a href="<%= canonical_url %>"><%= canonical_url %></a>:</p>
+
+  <h2><abbr title="JavaScript Object Notation">JSON</abbr> Data</h2>
+
+  <figure class="search-results-data">
+    <output>
+      <pre><%= h(JSON.pretty_generate(document.to_h)) %></pre>
+    </output>
+
+    <figcaption>
+      microformats2-encoded data for <a href="<%= canonical_url %>"><%= canonical_url %></a> represented as JSON.
+    </figcaption>
+  </figure>
+<% else %>
+  <p>No microformats2-encoded data was found for <a href="<%= canonical_url %>"><%= canonical_url %></a>.</p>
+<% end %>
+
+<h2>Command Line Interface</h2>
+
+<figure class="search-results-cli">
+  <figcaption>
+    Use command line utilities like <a href="https://curl.haxx.se">curl</a> or <a href="https://www.gnu.org/software/wget/">Wget</a> to directly query micromicro.cc.
+  </figcaption>
+
+  <kbd>curl --header 'Accept: application/json' --silent 'https://micromicro.cc/search?url=<%= canonical_url %>'</kbd>
+  <kbd>wget --header 'Accept: application/json' --quiet -O - 'https://micromicro.cc/search?url=<%= canonical_url %>'</kbd>
+</figure>

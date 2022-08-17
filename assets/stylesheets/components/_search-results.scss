@@ -1,0 +1,34 @@
+.search-results-data {
+  margin: 0 0 var(--spacing-large) 0;
+
+  pre {
+    background: var(--white);
+    border: 0.25rem solid var(--fall-green);
+    border-radius: var(--spacing-small);
+    overflow-x: scroll;
+    margin: 0;
+    padding: var(--spacing-small);
+  }
+
+  figcaption {
+    font-size: 80%;
+    margin: var(--spacing-small) 0 0 0;
+  }
+}
+
+.search-results-cli {
+  margin: 0 0 var(--spacing-large) 0;
+
+  figcaption {
+    margin: 0 0 var(--spacing-small) 0;
+  }
+
+  kbd {
+    background: var(--white);
+    border: 0.25rem solid var(--fall-green);
+    border-radius: var(--spacing-small);
+    display: block;
+    margin: var(--spacing-small) 0;
+    padding: var(--spacing-small);
+  }
+}
