@@ -1,3 +1,36 @@
+.search-results-table {
+  border-collapse: collapse;
+  margin-bottom: var(--spacing-large);
+  width: 100%;
+
+  tr {
+    padding: var(--spacing-small);
+
+    &:nth-child(odd) {
+      background-color: var(--white);
+    }
+  }
+
+  th,
+  td {
+    padding: var(--spacing-small);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  td {
+    text-align: right;
+  }
+
+  caption {
+    border: var(--spacing-tiny) solid transparent;
+    caption-side: bottom;
+    font-size: 80%;
+    padding: var(--spacing-tiny);
+    text-align: left;
+  }
+}
+
 .search-results-data {
   margin: 0 0 var(--spacing-large) 0;
 

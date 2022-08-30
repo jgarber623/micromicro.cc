@@ -3,6 +3,38 @@
 <% if document.items.any? || document.relationships.any? %>
   <p>Found the following microformats2-encoded data for <a href="<%= canonical_url %>"><%= canonical_url %></a>:</p>
 
+  <% if document.items.any? %>
+    <h2>Items</h2>
+
+    <table class="search-results-table">
+      <caption>Summary of microformats2-encoded items published by <a href="<%= canonical_url %>"><%= canonical_url %></a> presented as tabular data.</caption>
+      <tbody>
+        <% document.items.where(&:types).flat_map(&:types).sort.tally.each do |type, count| %>
+          <tr>
+            <th scope="row"><%= type %></th>
+            <td><%= count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <% if document.relationships.any? %>
+    <h2>Relationships</h2>
+
+    <table class="search-results-table">
+      <caption>Summary of microformats2-encoded relationships published by <a href="<%= canonical_url %>"><%= canonical_url %></a> presented as tabular data.</caption>
+      <tbody>
+        <% document.relationships.flat_map(&:rels).sort.tally.each do |name, count| %>
+          <tr>
+            <th scope="row"><%= name %></th>
+            <td><%= count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
   <h2><abbr title="JavaScript Object Notation">JSON</abbr> Data</h2>
 
   <figure class="search-results-data">
