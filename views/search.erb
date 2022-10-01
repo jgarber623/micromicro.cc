@@ -1,13 +1,13 @@
 <h1>Search Results</h1>
 
 <% if document.items.any? || document.relationships.any? %>
-  <p>Found the following microformats2-encoded data for <a href="<%= canonical_url %>"><%= canonical_url %></a>:</p>
+  <p>Found the following microformats2-encoded data for <%= link_to canonical_url, canonical_url %>:</p>
 
   <% if document.items.any? %>
     <h2>Items</h2>
 
     <table class="search-results-table">
-      <caption>Summary of microformats2-encoded items published by <a href="<%= canonical_url %>"><%= canonical_url %></a> presented as tabular data.</caption>
+      <caption>Summary of microformats2-encoded items published by <%= link_to canonical_url, canonical_url %> presented as tabular data.</caption>
       <tbody>
         <% document.items.where(&:types).flat_map(&:types).sort.tally.each do |type, count| %>
           <tr>
@@ -23,7 +23,7 @@
     <h2>Relationships</h2>
 
     <table class="search-results-table">
-      <caption>Summary of microformats2-encoded relationships published by <a href="<%= canonical_url %>"><%= canonical_url %></a> presented as tabular data.</caption>
+      <caption>Summary of microformats2-encoded relationships published by <%= link_to canonical_url, canonical_url %> presented as tabular data.</caption>
       <tbody>
         <% document.relationships.flat_map(&:rels).sort.tally.each do |name, count| %>
           <tr>
@@ -43,11 +43,11 @@
     </output>
 
     <figcaption>
-      microformats2-encoded data for <a href="<%= canonical_url %>"><%= canonical_url %></a> represented as JSON.
+      microformats2-encoded data for <%= link_to canonical_url, canonical_url %> represented as JSON.
     </figcaption>
   </figure>
 <% else %>
-  <p>No microformats2-encoded data was found for <a href="<%= canonical_url %>"><%= canonical_url %></a>.</p>
+  <p>No microformats2-encoded data was found for <%= link_to canonical_url, canonical_url %>.</p>
 <% end %>
 
 <h2>Command Line Interface</h2>
