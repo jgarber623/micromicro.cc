@@ -17,6 +17,7 @@ class MicroMicroApp < Roda
 
   # Rendering plugins
   plugin :h
+  plugin :link_to
   plugin :render
 
   # Request/Response plugins
