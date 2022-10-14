@@ -1,6 +1,6 @@
 services:
   web:
-    image: micromicro-cc-web
+    image: jgarber623/micromicro-cc-web
     build:
       context: .
       target: development
