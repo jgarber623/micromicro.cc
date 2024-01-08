@@ -55,7 +55,7 @@ GEM
       nokogiri (>= 1.14)
       nokogiri-html-ext (~> 0.4.0)
     minitest (5.19.0)
-    nio4r (2.5.9)
+    nio4r (2.7.0)
     nokogiri (1.15.3-aarch64-linux)
       racc (~> 1.4)
     nokogiri (1.15.3-x86_64-linux)
@@ -67,7 +67,7 @@ GEM
       ast (~> 2.4.1)
       racc
     public_suffix (5.0.3)
-    puma (6.4.0)
+    puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (3.0.8)
