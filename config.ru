@@ -2,4 +2,4 @@
 
 require_relative 'config/environment'
 
-run MicroMicroApp.freeze.app
+run App.freeze.app
