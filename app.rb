@@ -54,13 +54,19 @@ class App < Roda
   configure do
     use Rack::CommonLogger
     use Rack::ContentType
+    use Rack::Deflater
+    use Rack::ETag
   end
 
   # :nocov:
   configure :production do
-    use Rack::Deflater
     use Rack::HostRedirect, [ENV.fetch("HOSTNAME", nil), "www.micromicro.cc"].compact => "micromicro.cc"
-    use Rack::Static, urls: ["/assets"], root: "public"
+    use Rack::Static,
+        urls: ["/assets"],
+        root: "public",
+        header_rules: [
+          [:all, { "cache-control": "max-age=31536000, immutable" }]
+        ]
   end
   # :nocov:
 
