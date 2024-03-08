@@ -11,11 +11,13 @@ GEM
     ansi (1.5.0)
     ast (2.4.2)
     base64 (0.2.0)
+    bigdecimal (3.1.6)
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
     concurrent-ruby (1.2.3)
-    crack (0.4.5)
+    crack (1.0.0)
+      bigdecimal
       rexml
     debug (1.9.1)
       irb (~> 1.10)
@@ -27,7 +29,7 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
-    hashdiff (1.0.1)
+    hashdiff (1.1.0)
     http (5.2.0)
       addressable (~> 2.8)
       base64 (~> 0.1)
@@ -165,7 +167,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
-    webmock (3.19.1)
+    webmock (3.23.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
