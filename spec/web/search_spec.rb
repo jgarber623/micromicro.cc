@@ -53,7 +53,7 @@ RSpec.describe App, roda: :app do
     context "when valid url param" do
       before do
         stub_request(:get, example_url).to_return(
-          headers: { 'Content-Type': "text/html" },
+          headers: { "Content-Type": "text/html" },
           body: <<~HTML
             <html>
             <body>
@@ -89,8 +89,8 @@ RSpec.describe App, roda: :app do
             rels: {
               me: ["https://jgarber.example/"]
             },
-            'rel-urls': {
-              'https://jgarber.example/': {
+            "rel-urls": {
+              "https://jgarber.example/": {
                 rels: ["me"],
                 text: "Jason Garber"
               }
