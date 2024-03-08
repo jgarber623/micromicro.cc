@@ -37,7 +37,6 @@ class App < Roda
   end
 
   plugin :default_headers,
-         "Content-Type" => "text/html; charset=utf-8",
          "Referrer-Policy" => "no-referrer-when-downgrade",
          "X-Frame-Options" => "DENY",
          "X-XSS-Protection" => "0"
@@ -54,6 +53,7 @@ class App < Roda
 
   configure do
     use Rack::CommonLogger
+    use Rack::ContentType
   end
 
   # :nocov:
