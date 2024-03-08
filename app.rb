@@ -55,7 +55,7 @@ class App < Roda
   plugin :sprockets,
          css_compressor: :sassc,
          debug: false,
-         precompile: %w[application.css apple-touch-icon-180x180.png icon.png]
+         precompile: ['application.css', 'apple-touch-icon-180x180.png', 'icon.png']
 
   configure do
     use Rack::CommonLogger
