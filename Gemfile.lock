@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (7.1.3.2)
+    activesupport (7.1.3.3)
       base64
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
@@ -20,7 +20,7 @@ GEM
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
-    concurrent-ruby (1.2.3)
+    concurrent-ruby (1.3.1)
     connection_pool (2.4.1)
     crack (1.0.0)
       bigdecimal
@@ -50,7 +50,7 @@ GEM
     http-cookie (1.0.5)
       domain_name (~> 0.5)
     http-form_data (2.3.0)
-    i18n (1.14.4)
+    i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
     irb (1.12.0)
@@ -64,11 +64,11 @@ GEM
     llhttp-ffi (0.5.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
-    micromicro (5.0.1)
+    micromicro (6.0.0)
       activesupport (~> 7.0)
       nokogiri (>= 1.14)
       nokogiri-html-ext (~> 0.4.0)
-    minitest (5.22.3)
+    minitest (5.23.1)
     mutex_m (0.2.0)
     nio4r (2.7.1)
     nokogiri (1.16.5-aarch64-linux)
