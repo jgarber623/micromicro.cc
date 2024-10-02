@@ -40,11 +40,6 @@ class App < Roda
 
   plugin :permissions_policy, default: :none
 
-  plugin :default_headers,
-         "Referrer-Policy" => "no-referrer-when-downgrade",
-         "X-Frame-Options" => "DENY",
-         "X-XSS-Protection" => "0"
-
   # Other plugins
   plugin :environments
   plugin :heartbeat
