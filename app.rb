@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "models/refined_uri"
+
 class App < Roda
   class InvalidURIError < StandardError; end
 
@@ -76,18 +78,33 @@ class App < Roda
     r.public
     r.sprockets unless opts[:environment] == "production"
 
-    r.root do
-      response.cache_control public: true
+    r.on "" do
+      # GET /
+      r.get do
+        response.cache_control public: true
 
-      view :index
+        view :index
+      end
+
+      # POST /
+      r.post do
+        query = RefinedURI.new(r.params["url"])
+
+        raise InvalidURIError if query.invalid?
+
+        r.redirect "/u/#{query.url}"
+      rescue InvalidURIError, URI::InvalidURIError
+        r.halt 400
+      end
     end
 
-    r.get "search" do
-      uri = HTTP::URI.parse(r.params["url"].to_s)
+    # GET /u/https://example.com
+    r.get "u", /(#{URI::DEFAULT_PARSER.make_regexp(["http", "https"])})/io do |url|
+      query = RefinedURI.new(url)
 
-      raise InvalidURIError unless uri.http? || uri.https?
+      raise InvalidURIError if query.invalid?
 
-      rsp = HTTP.follow(max_hops: 20).headers(HTTP_HEADERS_OPTS).timeout(connect: 5, read: 5).get(uri)
+      rsp = HTTP.follow(max_hops: 20).headers(HTTP_HEADERS_OPTS).timeout(connect: 5, read: 5).get(query.url)
 
       canonical_url = rsp.uri.to_s
       document = MicroMicro.parse(rsp.body.to_s, canonical_url)

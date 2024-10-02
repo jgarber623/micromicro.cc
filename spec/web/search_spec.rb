@@ -1,23 +1,25 @@
 # frozen_string_literal: true
 
-RSpec.describe App, roda: :app do
-  describe "GET /search" do
-    let(:example_url) { "https://example.com" }
+RSpec.describe App do
+  subject(:response) { last_response }
 
+  let(:example_url) { "https://example.com" }
+
+  describe "GET /u" do
     context "when no url param" do
-      let(:request) { get "/search" }
+      let(:request) { get "/u" }
 
-      include_examples "a bad request"
+      include_examples "a not found request"
     end
 
-    context "when invalid url param protocol" do
-      let(:request) { get "/search", url: "ftp://example.com" }
+    context "when unsupported url param protocol" do
+      let(:request) { get "/u/ftp://example.com" }
 
-      include_examples "a bad request"
+      include_examples "a not found request"
     end
 
-    context "when invalid url param" do
-      let(:request) { get "/search", url: "https://example.com<script>" }
+    context "when localhost url param" do
+      let(:request) { get "/u/http://localhost" }
 
       include_examples "a bad request"
     end
@@ -32,7 +34,7 @@ RSpec.describe App, roda: :app do
       context "when requesting text/html" do
         before do
           header "Accept", "text/html"
-          get "/search", url: example_url
+          get "/u/#{example_url}"
         end
 
         it { is_expected.to be_request_timeout }
@@ -42,7 +44,7 @@ RSpec.describe App, roda: :app do
       context "when requesting application/json" do
         before do
           header "Accept", "application/json"
-          get "/search", url: example_url
+          get "/u/#{example_url}"
         end
 
         it { is_expected.to be_request_timeout }
@@ -67,7 +69,7 @@ RSpec.describe App, roda: :app do
       context "when requesting text/html" do
         before do
           header "Accept", "text/html"
-          get "/search", url: example_url
+          get "/u/#{example_url}"
         end
 
         it { is_expected.to be_ok }
@@ -100,12 +102,36 @@ RSpec.describe App, roda: :app do
 
         before do
           header "Accept", "application/json"
-          get "/search", url: example_url
+          get "/u/#{example_url}"
         end
 
         it { is_expected.to be_ok }
         its(:body) { is_expected.to eq(microformats_data.to_json) }
       end
+    end
+  end
+
+  describe "POST /u" do
+    let(:message) { "The requested method is not allowed" }
+
+    context "when requesting text/html" do
+      before do
+        header "Accept", "text/html"
+        post "/u/#{example_url}"
+      end
+
+      it { is_expected.to be_method_not_allowed }
+      its(:body) { is_expected.to eq(message) }
+    end
+
+    context "when requesting application/json" do
+      before do
+        header "Accept", "application/json"
+        post "/u/#{example_url}"
+      end
+
+      it { is_expected.to be_method_not_allowed }
+      its(:body) { is_expected.to eq({ message: message }.to_json) }
     end
   end
 end
