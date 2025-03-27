@@ -84,19 +84,19 @@ RSpec.describe App do
                 type: ["h-card"],
                 properties: {
                   name: ["Jason Garber"],
-                  url: ["https://jgarber.example/"]
-                }
-              }
+                  url: ["https://jgarber.example/"],
+                },
+              },
             ],
             rels: {
-              me: ["https://jgarber.example/"]
+              me: ["https://jgarber.example/"],
             },
             "rel-urls": {
               "https://jgarber.example/": {
                 rels: ["me"],
-                text: "Jason Garber"
-              }
-            }
+                text: "Jason Garber",
+              },
+            },
           }
         end
 
